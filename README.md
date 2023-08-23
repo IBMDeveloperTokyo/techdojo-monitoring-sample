@@ -58,5 +58,5 @@ $ docker-compose up -d
 ## 動作確認
 以下URLにアクセスしてadmin/adminでログイン
 ```
-http://locaohost:3003
+http://localhost:3003
 ```
