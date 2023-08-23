@@ -9,7 +9,7 @@ https://ibm-developer.connpass.com/event/278896/
 * PostgreSQLコンテナを停止して、メールアラートがくることを確認
 
 ### システム構成図
-![システム構成図](https://github.com/NoriMuraZ/techdojo-monitoring-sample/assets/99166088/058974e6-9f64-48c2-a576-0e32e4bdf0fc)
+![システム構成図](https://github.com/IBMDeveloperTokyo/techdojo-monitoring-sample/assets/99166088/c4a35d82-c6ae-4534-a07d-c338e2e4d0c6)
 
 ### フォルダ構成
 以下のような構成になります。
