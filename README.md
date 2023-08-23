@@ -53,7 +53,7 @@ $ mkdir sys
 
 ➂以下コマンドを実行
 ```
-$ docker-compose up -d
+$ podman-compose up -d
 ```
 
 ## 動作確認
