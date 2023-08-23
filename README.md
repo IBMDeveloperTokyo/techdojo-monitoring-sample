@@ -37,7 +37,8 @@ https://ibm-developer.connpass.com/event/278896/
 
 ## 動作確認環境
 * Windows11
-* Docker for Business
+* podman
+* podman compose
 
 ## 起動方法
 ➀任意のフォルダにすべてダウンロード
