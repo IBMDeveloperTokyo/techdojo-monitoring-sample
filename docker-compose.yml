@@ -1,0 +1,75 @@
+version: '3'
+services:
+  prometheus:
+    image: prom/prometheus
+    volumes:
+      - ./prometheus:/etc/prometheus
+    command: "--config.file=/etc/prometheus/prometheus.yml"
+    ports:
+      - '9090:9090'
+    #自動起動設定
+    restart: always
+  grafana:
+    image: grafana/grafana
+    ports:
+      - "3003:3000"
+    #自動起動設定
+    restart: always
+  node-exporter:
+    image: quay.io/prometheus/node-exporter
+    ports:
+      - 9100:9100
+    volumes:
+      - ./proc:/host/proc
+      - ./sys:/host/sys
+      - ./rootfs:/rootfs
+    #自動起動設定
+    restart: always
+  postgres-exporter:
+    container_name: postgres-exporter
+    image: quay.io/prometheuscommunity/postgres-exporter
+    hostname: postgres-exporter
+    env_file:
+      - ./postgres.env
+    ports:
+      - 9187:9187
+    #自動起動設定
+    restart: always
+  postgres-db:
+    image: postgres:14
+    ports:
+      - 5432:5432
+    volumes:
+      - db-store:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_PASSWORD=passw0rd
+    #自動起動設定
+    restart: always
+  alertm:
+    image: prom/alertmanager
+    volumes:
+      - ./alertmanager:/etc/alertmanager
+    command:
+      - "--config.file=/etc/alertmanager/config.yml"
+    ports:
+      - 3006:9093
+    #自動起動設定
+    restart: always
+  mailserver:
+    image: mailhog/mailhog
+    container_name: mailhog
+    ports:
+      - '8025:8025'
+    environment:
+      MH_STORAGE: maildir
+      MH_MAILDIR_PATH: /tmp
+    volumes:
+      - maildir:/tmp
+volumes:
+  db-store:
+  maildir: {}
+
+networks:  
+  default:
+    external:
+      name: prom_net
